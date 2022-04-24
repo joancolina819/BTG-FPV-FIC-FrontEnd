@@ -43,7 +43,7 @@ export default function App() {
           <Banner />
           <br></br>
           <Divider/>
-          <Stack spacing={1} direction = "row" divider={<Divider  />}  > 
+          <Stack spacing={1} direction = "row" divider={<Divider orientation="vertical" flexItem />}  > 
             <NavBar />
               <Routes >
                 <Route  exact path="historial" element={<Historial/>}/>
