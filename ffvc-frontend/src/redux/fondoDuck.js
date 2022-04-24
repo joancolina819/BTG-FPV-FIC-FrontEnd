@@ -7,6 +7,7 @@ const data_inicial={
     fondos : [],
     historial: [],
     fondos_propios: [],
+    peticion_mensaje:""
 }
 
 //################################## TIPOS DE ACCIONES ######################333
@@ -14,6 +15,8 @@ const GET_FONDOS = 'GET_FONDOS'
 const GET_HISTORIAL = 'GET_HISTORIAL'
 const GET_FONDOS_PROPIOS = 'GET_FONDOS_PROPIOS'
 const GET_CLIENT = 'GET_CLIENT'
+const PETICION_MENSAJE = 'PETICION_MENSAJE'
+
 
 
 //################################### REDUCER #########################33
@@ -27,6 +30,8 @@ export default function fondoReducer(state= data_inicial, action){
             return {...state, fondos_propios: action.payload}
         case GET_CLIENT:
             return {...state, client: action.payload}
+        case PETICION_MENSAJE:
+            return {...state, peticion_mensaje: action.payload}
         default:
             return state
     }
@@ -110,7 +115,25 @@ export const suscribirseAction=(id_client, id_fondo)=> async (dispatch, getState
         axios.post("http://127.0.0.1:8000/2FVC/suscripcion?id_client="+id_client+"&id_fondo="+id_fondo)
         .then((response)=>{
             dispatch({
-                type: GET_CLIENT,
+                type: PETICION_MENSAJE,
+                payload: response["data"]
+            })
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+    }catch(error){
+        console.log(error)
+    }
+}
+
+export const cancelacionAction=(id_client, id_fondo)=> async (dispatch, getState) =>{
+
+    try{            
+        axios.post("http://127.0.0.1:8000/2FVC/cancelacion?id_client="+id_client+"&id_fondo="+id_fondo)
+        .then((response)=>{
+            dispatch({
+                type: PETICION_MENSAJE,
                 payload: response["data"]
             })
         })

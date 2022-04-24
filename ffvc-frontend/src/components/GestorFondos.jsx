@@ -1,7 +1,7 @@
 import React from "react";
 import DataTable from "./DataTable";
 import {useSelector, useDispatch} from 'react-redux'
-import {get_fondos_propios, get_fondos, suscribirseAction,get_client} from '../redux/fondoDuck'
+import {get_fondos_propios, get_fondos, suscribirseAction,get_client,cancelacionAction} from '../redux/fondoDuck'
 import Box from '@mui/material/Box';
 import { Button} from "@mui/material";
 
@@ -48,6 +48,12 @@ export default function GestorFondos(){
       dispatch(get_fondos_propios(client["_id"]))
     }
 
+    const cancelarFondo = () =>{
+      dispatch(cancelacionAction(client["_id"],my_fondos_select[0]))
+      dispatch(get_client())
+      dispatch(get_fondos_propios(client["_id"]))
+    }
+
     return(
         <Box sx={{ height: 400, width: '100%' }}>
             <DataTable  columns={columns} 
@@ -60,7 +66,7 @@ export default function GestorFondos(){
                         width={900}
                         setFondo={set_my_fondos_select}/>
             <br />
-            <Button variant="contained">Cancelar fondo</Button>
+            <Button onClick={cancelarFondo} variant="contained">Cancelar fondo</Button>
             <DataTable  columns={columns} 
                         row={fondos} tipo="h5" 
                         mensaje="Todos los fondos" 
