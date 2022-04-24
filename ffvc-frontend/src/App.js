@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import Historial from "./components/Historial";
+import generateStore from "./redux/store";
+import { Provider } from "react-redux";
+
+const store = generateStore()
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Provider store={store}>
+        <h1>Hola Joan</h1>
+        <Historial/>
+      </Provider>
     </div>
   );
 }
