@@ -1,9 +1,9 @@
 import React from "react";
 import DataTable from "./DataTable";
 import {useSelector, useDispatch} from 'react-redux'
-import {get_fondos_propios, get_fondos} from '../redux/fondoDuck'
+import {get_fondos_propios, get_fondos, suscribirseAction,get_client} from '../redux/fondoDuck'
 import Box from '@mui/material/Box';
-import { Button } from "@mui/material";
+import { Button} from "@mui/material";
 
 
 export default function GestorFondos(){
@@ -31,7 +31,6 @@ export default function GestorFondos(){
     const client = useSelector(store=> store.fondos.client)
 
     React.useEffect(()=>{
-        console.log(client)
         dispatch(get_fondos())
         dispatch(get_fondos_propios(client["_id"]))
     }, [dispatch]);
@@ -41,6 +40,13 @@ export default function GestorFondos(){
 
     const [my_fondos_select, set_my_fondos_select] = React.useState([]);
     const [all_fondos_select, set_all_fondos_select] = React.useState([]);
+
+
+    const suscribirFondo = () =>{
+      dispatch(suscribirseAction(client["_id"],all_fondos_select[0]))
+      dispatch(get_client())
+      dispatch(get_fondos_propios(client["_id"]))
+    }
 
     return(
         <Box sx={{ height: 400, width: '100%' }}>
@@ -52,7 +58,7 @@ export default function GestorFondos(){
                         fontWeight="bold" 
                         minHeight={300} 
                         width={900}
-                        setFondos={set_my_fondos_select}/>
+                        setFondo={set_my_fondos_select}/>
             <br />
             <Button variant="contained">Cancelar fondo</Button>
             <DataTable  columns={columns} 
@@ -62,9 +68,9 @@ export default function GestorFondos(){
                         fontWeight="bold" 
                         minHeight={350} 
                         width={900}
-                        setFondos={set_all_fondos_select}/>
+                        setFondo={set_all_fondos_select}/>
             <br />
-            <Button variant="contained">Suscribirse a fondo</Button>
+            <Button onClick={suscribirFondo} variant="contained">Suscribirse a fondo</Button>
         </Box>
     )
 }

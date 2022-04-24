@@ -52,7 +52,6 @@ export const get_fondos=()=> async (dispatch, getState) =>{
 }
 
 export const get_fondos_propios=(id_client)=> async (dispatch, getState) =>{
-    console.log(id_client)
     try{
         axios.get("http://127.0.0.1:8000/2FVC/myfondos?id_client="+id_client)
         .then((response)=>{
@@ -91,6 +90,24 @@ export const get_client=()=> async (dispatch, getState) =>{
 
     try{
         axios.get("http://127.0.0.1:8000/2FVC/usuario")
+        .then((response)=>{
+            dispatch({
+                type: GET_CLIENT,
+                payload: response["data"]
+            })
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+    }catch(error){
+        console.log(error)
+    }
+}
+
+export const suscribirseAction=(id_client, id_fondo)=> async (dispatch, getState) =>{
+
+    try{            
+        axios.post("http://127.0.0.1:8000/2FVC/suscripcion?id_client="+id_client+"&id_fondo="+id_fondo)
         .then((response)=>{
             dispatch({
                 type: GET_CLIENT,
