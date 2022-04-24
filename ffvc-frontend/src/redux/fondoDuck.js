@@ -74,7 +74,7 @@ export const get_historial=()=> async (dispatch, getState) =>{
         axios.get("http://127.0.0.1:8000/2FVC/historial")
         .then((response)=>{
             dispatch({
-                type: GET_FONDOS,
+                type: GET_HISTORIAL,
                 payload: response["data"]
             })
         })

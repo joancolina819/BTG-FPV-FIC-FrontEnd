@@ -8,32 +8,32 @@ export default function Historial(){
     const columns = [
         { field: 'id', headerName: 'ID de registro', width: 150 },
         {
-          field: 'Nombre',
+          field: 'nombre',
           headerName: 'Nombre',
           width: 150,
         },
         {
-          field: 'Apellido',
+          field: 'apellido',
           headerName: 'Apellido',
           width: 150,
         },
         {
-          field: 'Edad',
+          field: 'edad',
           headerName: 'Edad',
           width: 110,
         },
         {
-            field: 'Hora de transaccion',
+            field: 'hora de transaccion',
             headerName: 'Hora de transaccion',
-            width: 200,
+            width: 250,
           },
           {
-            field: 'Fondo',
+            field: 'fondo',
             headerName: 'Fondo',
-            width: 110,
+            width: 210,
           },
           {
-            field: 'Tipo de transaccion',
+            field: 'tipo de transaccion',
             headerName: 'Tipo de transaccion',
             width: 170,
           },
@@ -55,6 +55,6 @@ export default function Historial(){
                   color="primary.main" 
                   fontWeight="bold" 
                   minHeight={400} 
-                  width={1100}/>
+                  width={1250}/>
     )
 }
