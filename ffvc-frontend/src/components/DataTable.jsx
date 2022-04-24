@@ -20,7 +20,6 @@ export default function DataTable(props){
                 rowHeight={30}
                 checkboxSelection
                 onSelectionModelChange={(id)=>{
-                    console.log(id)
                     props.setFondo(id);
                 }}
                 components={{ 

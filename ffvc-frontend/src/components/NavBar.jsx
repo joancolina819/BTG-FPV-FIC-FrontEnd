@@ -11,6 +11,7 @@ export default function NavBar(){
                 width: 250,
                 height: "100%",
                 backgroundColor: 'secondary.light',
+                minWidth:250
             }}>
             <br/>
             <Stack spacing={1} divider={<Divider  />}  > 

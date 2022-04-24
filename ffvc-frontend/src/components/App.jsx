@@ -41,6 +41,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <Banner />
+          <br></br>
           <Divider/>
           <Stack spacing={1} direction = "row" divider={<Divider  />}  > 
             <NavBar />

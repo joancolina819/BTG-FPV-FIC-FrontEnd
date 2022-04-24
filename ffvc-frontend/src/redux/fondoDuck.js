@@ -7,7 +7,7 @@ const data_inicial={
     fondos : [],
     historial: [],
     fondos_propios: [],
-    peticion_mensaje:""
+    peticion_mensaje:[]
 }
 
 //################################## TIPOS DE ACCIONES ######################333
@@ -114,6 +114,7 @@ export const suscribirseAction=(id_client, id_fondo)=> async (dispatch, getState
     try{            
         axios.post("http://127.0.0.1:8000/2FVC/suscripcion?id_client="+id_client+"&id_fondo="+id_fondo)
         .then((response)=>{
+            console.log(response["data"])
             dispatch({
                 type: PETICION_MENSAJE,
                 payload: response["data"]

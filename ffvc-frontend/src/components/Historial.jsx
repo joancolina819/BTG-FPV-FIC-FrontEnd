@@ -2,6 +2,7 @@ import React from "react";
 import {useSelector, useDispatch} from 'react-redux'
 import {get_historial} from '../redux/fondoDuck'
 import DataTable from "./DataTable";
+import Box from '@mui/material/Box';
 
 export default function Historial(){
 
@@ -48,7 +49,8 @@ export default function Historial(){
     }, [dispatch]);
 
     return(
-      <DataTable  columns={columns} 
+      <Box sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main", height: "auto", width: 'auto' }}>
+        <DataTable  columns={columns} 
                   row={historial} 
                   tipo="h5" 
                   mensaje="Historial de transacciones de los fondos" 
@@ -56,5 +58,6 @@ export default function Historial(){
                   fontWeight="bold" 
                   minHeight={400} 
                   width={1250}/>
+      </Box>
     )
 }
