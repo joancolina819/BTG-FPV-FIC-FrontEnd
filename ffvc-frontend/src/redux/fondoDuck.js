@@ -14,12 +14,16 @@ const data_inicial={
         { id: 7, Apellido: 'Clifford', "Nombre": 'Ferrara', Edad: 44, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
         { id: 8, Apellido: 'Frances', "Nombre": 'Rossini', Edad: 36, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
         { id: 9, Apellido: 'Roxie', "Nombre": 'Harvey', Edad: 65, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
-      ]
+      ],
+    fondos_propios: [
+        { id: 1, nombre: "test",'Monto mínimo de vinculacion al fondo':"test", Categoria:"test"}
+    ],
 }
 
 //################################## TIPOS DE ACCIONES ######################333
 const GET_FONDOS = 'GET_FONDOS'
 const GET_HISTORIAL = 'GET_HISTORIAL'
+const GET_FONDOS_PROPIOS = 'GET_FONDOS_PROPIOS'
 
 
 //################################### REDUCER #########################33
@@ -30,6 +34,8 @@ export default function fondoReducer(state= data_inicial, action){
             return {...state, fondos: action.payload}
         case GET_HISTORIAL:
             return {...state, historial: action.payload}
+        case GET_FONDOS_PROPIOS:
+            return {...state, fondos_propios: action.payload}
         default:
             return state
     }
@@ -41,6 +47,7 @@ export const get_fondos=()=> async (dispatch, getState) =>{
     try{
         axios.get("http://127.0.0.1:8000/2FVC/fondos")
         .then((response)=>{
+            console.log(response["data"])
             dispatch({
                 type: GET_FONDOS,
                 payload: response["data"]
@@ -54,6 +61,23 @@ export const get_fondos=()=> async (dispatch, getState) =>{
     }
 }
 
+export const get_fondos_propios=()=> async (dispatch, getState) =>{
+
+    try{
+        axios.get("http://127.0.0.1:8000/2FVC/myfondos")
+        .then((response)=>{
+            dispatch({
+                type: GET_FONDOS_PROPIOS,
+                payload: response["data"]
+            })
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+    }catch(error){
+        console.log(error)
+    }
+}
 
 export const get_historial=()=> async (dispatch, getState) =>{
 

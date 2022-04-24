@@ -1,9 +1,7 @@
 import React from "react";
-import { DataGrid, esES, GridToolbar } from '@mui/x-data-grid';
-import Mensaje from "./Mensaje";
-import { Divider } from "@mui/material";
 import {useSelector, useDispatch} from 'react-redux'
 import {get_historial} from '../redux/fondoDuck'
+import DataTable from "./DataTable";
 
 export default function Historial(){
 
@@ -50,19 +48,6 @@ export default function Historial(){
     }, [dispatch]);
 
     return(
-        <div style={{ height: 400, width: '100%' }}>
-            <br />
-            <Mensaje tipo = "h5" mensaje ="Historial de transacciones de los fondos" color ="primary.light" fontWeight="bold"/>
-            <br />
-            <Divider/>
-            <br />
-            <DataGrid
-                localeText={esES.components.MuiDataGrid.defaultProps.localeText}
-                rows={historial}
-                columns={columns}
-                rowHeight={30}
-                components={{ Toolbar: GridToolbar }} 
-            />
-        </div>
+      <DataTable columns={columns} row={historial} tipo="h5" mensaje="Historial de transacciones de los fondos" color="primary.main" fontWeight="bold" minHeight={400} width="65%"/>
     )
 }
