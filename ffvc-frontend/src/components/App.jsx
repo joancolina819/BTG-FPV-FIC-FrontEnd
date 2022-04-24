@@ -5,8 +5,13 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import NavBar from "./NavBar";
 import { Divider } from "@mui/material";
 import Historial from "./Historial";
+import Gestorfondos from "./GestorFondos";
 import { Stack } from "@mui/material";
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 export default function App() {
   const store = generateStore()
@@ -31,16 +36,21 @@ export default function App() {
   })
 
   return (
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <Banner />
-        <Divider/>
-        <Stack spacing={1} direction = "row" divider={<Divider  />}  > 
-          <NavBar />
-          <Historial/>
-        </Stack>
-      </Provider>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <Banner />
+          <Divider/>
+          <Stack spacing={1} direction = "row" divider={<Divider  />}  > 
+            <NavBar />
+              <Routes >
+                <Route  exact path="historial" element={<Historial/>}/>
+                <Route  exact path="gestorfondos" element={<Gestorfondos/>}/>
+            </Routes >
+          </Stack>
+        </Provider>
+      </ThemeProvider>
+    </Router>
   );
 }
 
