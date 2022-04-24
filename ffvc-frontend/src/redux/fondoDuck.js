@@ -4,20 +4,8 @@ import axios from 'axios'
 //################################## CONSTANTES DE REDUX ##########################
 const data_inicial={
     fondos : [],
-    historial: [
-        { id: 1, Apellido: 'Snow', "Nombre": 'Jon', Edad: 35 , "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion"},
-        { id: 2, Apellido: 'Lannister', "Nombre": 'Cersei', Edad: 42, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
-        { id: 3, Apellido: 'Lannister', "Nombre": 'Jaime', Edad: 45, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
-        { id: 4, Apellido: 'Stark', "Nombre": 'Arya', Edad: 16, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
-        { id: 5, Apellido: 'Targaryen', "Nombre": 'Daenerys', Edad: null, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
-        { id: 6, Apellido: 'Melisandre', "Nombre": null, Edad: 150, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
-        { id: 7, Apellido: 'Clifford', "Nombre": 'Ferrara', Edad: 44, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
-        { id: 8, Apellido: 'Frances', "Nombre": 'Rossini', Edad: 36, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
-        { id: 9, Apellido: 'Roxie', "Nombre": 'Harvey', Edad: 65, "Hora de transaccion": "13:05:33", "Fondo": "Liquidez", "Tipo de transaccion": "Cancelacion" },
-      ],
-    fondos_propios: [
-        { id: 1, nombre: "test",'Monto mínimo de vinculacion al fondo':"test", Categoria:"test"}
-    ],
+    historial: [],
+    fondos_propios: [],
 }
 
 //################################## TIPOS DE ACCIONES ######################333

@@ -2,6 +2,7 @@ import React from "react";
 import { DataGrid, esES, GridToolbar } from '@mui/x-data-grid';
 import Mensaje from "./Mensaje";
 import { Divider } from "@mui/material";
+import SinResultados from "./SinResultados";
 
 export default function DataTable(props){
 
@@ -22,7 +23,10 @@ export default function DataTable(props){
                     console.log(id)
                     props.setFondo(id);
                 }}
-                components={{ Toolbar: GridToolbar }} 
+                components={{ 
+                    Toolbar: GridToolbar,
+                    NoRowsOverlay:SinResultados 
+                }} 
                 sx={{minHeight:props.minHeight, width: props.width}}
             />
         </div>
