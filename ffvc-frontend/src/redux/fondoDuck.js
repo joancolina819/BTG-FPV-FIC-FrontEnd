@@ -12,7 +12,7 @@ const GET_FONDOS = 'GET_FONDOS'
 
 //################################### REDUCER #########################33
 export default function fondoReducer(state= data_inicial, action){
-    console.log(action.payload)
+    // console.log(action.payload)
     switch(action.type){
         case GET_FONDOS:
             return {...state, fondos: action.payload}

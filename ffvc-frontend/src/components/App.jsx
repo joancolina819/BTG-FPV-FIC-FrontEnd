@@ -1,8 +1,9 @@
-import Historial from "./Historial";
 import generateStore from "../redux/store";
 import { Provider } from "react-redux";
 import Banner from "./Banner";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import NavBar from "./NavBar";
+import { Divider } from "@mui/material";
 
 
 export default function App() {
@@ -31,7 +32,8 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Banner />
-        <Historial/>
+        <Divider/>
+        <NavBar />
       </Provider>
     </ThemeProvider>
   );
