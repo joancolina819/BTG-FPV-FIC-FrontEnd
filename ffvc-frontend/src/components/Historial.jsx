@@ -48,6 +48,13 @@ export default function Historial(){
     }, [dispatch]);
 
     return(
-      <DataTable columns={columns} row={historial} tipo="h5" mensaje="Historial de transacciones de los fondos" color="primary.main" fontWeight="bold" minHeight={400} width="65%"/>
+      <DataTable  columns={columns} 
+                  row={historial} 
+                  tipo="h5" 
+                  mensaje="Historial de transacciones de los fondos" 
+                  color="primary.main" 
+                  fontWeight="bold" 
+                  minHeight={400} 
+                  width={1100}/>
     )
 }

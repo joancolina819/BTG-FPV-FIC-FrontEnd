@@ -3,6 +3,7 @@ import axios from 'axios'
 
 //################################## CONSTANTES DE REDUX ##########################
 const data_inicial={
+    client:{},
     fondos : [],
     historial: [],
     fondos_propios: [],
@@ -12,11 +13,11 @@ const data_inicial={
 const GET_FONDOS = 'GET_FONDOS'
 const GET_HISTORIAL = 'GET_HISTORIAL'
 const GET_FONDOS_PROPIOS = 'GET_FONDOS_PROPIOS'
+const GET_CLIENT = 'GET_CLIENT'
 
 
 //################################### REDUCER #########################33
 export default function fondoReducer(state= data_inicial, action){
-    // console.log(action.payload)
     switch(action.type){
         case GET_FONDOS:
             return {...state, fondos: action.payload}
@@ -24,6 +25,8 @@ export default function fondoReducer(state= data_inicial, action){
             return {...state, historial: action.payload}
         case GET_FONDOS_PROPIOS:
             return {...state, fondos_propios: action.payload}
+        case GET_CLIENT:
+            return {...state, client: action.payload}
         default:
             return state
     }
@@ -35,7 +38,6 @@ export const get_fondos=()=> async (dispatch, getState) =>{
     try{
         axios.get("http://127.0.0.1:8000/2FVC/fondos")
         .then((response)=>{
-            console.log(response["data"])
             dispatch({
                 type: GET_FONDOS,
                 payload: response["data"]
@@ -49,10 +51,10 @@ export const get_fondos=()=> async (dispatch, getState) =>{
     }
 }
 
-export const get_fondos_propios=()=> async (dispatch, getState) =>{
-
+export const get_fondos_propios=(id_client)=> async (dispatch, getState) =>{
+    console.log(id_client)
     try{
-        axios.get("http://127.0.0.1:8000/2FVC/myfondos")
+        axios.get("http://127.0.0.1:8000/2FVC/myfondos?id_client="+id_client)
         .then((response)=>{
             dispatch({
                 type: GET_FONDOS_PROPIOS,
@@ -74,6 +76,24 @@ export const get_historial=()=> async (dispatch, getState) =>{
         .then((response)=>{
             dispatch({
                 type: GET_FONDOS,
+                payload: response["data"]
+            })
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+    }catch(error){
+        console.log(error)
+    }
+}
+
+export const get_client=()=> async (dispatch, getState) =>{
+
+    try{
+        axios.get("http://127.0.0.1:8000/2FVC/usuario")
+        .then((response)=>{
+            dispatch({
+                type: GET_CLIENT,
                 payload: response["data"]
             })
         })

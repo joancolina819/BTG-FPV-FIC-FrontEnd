@@ -28,10 +28,12 @@ export default function GestorFondos(){
       ];
 
     const dispatch = useDispatch()
+    const client = useSelector(store=> store.fondos.client)
 
     React.useEffect(()=>{
-        dispatch(get_fondos_propios())
+        console.log(client)
         dispatch(get_fondos())
+        dispatch(get_fondos_propios(client["_id"]))
     }, [dispatch]);
   
     const myfondos=useSelector(store=> store.fondos.fondos_propios)
@@ -49,8 +51,8 @@ export default function GestorFondos(){
                         color="primary.main" 
                         fontWeight="bold" 
                         minHeight={300} 
-                        width="50%"
-                        setFondos={my_fondos_select}/>
+                        width={900}
+                        setFondos={set_my_fondos_select}/>
             <br />
             <Button variant="contained">Cancelar fondo</Button>
             <DataTable  columns={columns} 
@@ -59,10 +61,10 @@ export default function GestorFondos(){
                         color="primary.main" 
                         fontWeight="bold" 
                         minHeight={350} 
-                        width="50%"
+                        width={900}
                         setFondos={set_all_fondos_select}/>
             <br />
-            <Button variant="contained">Cancelar fondo</Button>
+            <Button variant="contained">Suscribirse a fondo</Button>
         </Box>
     )
 }

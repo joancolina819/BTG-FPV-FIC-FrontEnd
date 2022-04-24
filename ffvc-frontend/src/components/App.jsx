@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import NavBar from "./NavBar";
 import { Divider } from "@mui/material";
 import Historial from "./Historial";
+import Home from "./Home";
 import Gestorfondos from "./GestorFondos";
 import { Stack } from "@mui/material";
 import {
@@ -46,6 +47,7 @@ export default function App() {
               <Routes >
                 <Route  exact path="historial" element={<Historial/>}/>
                 <Route  exact path="gestorfondos" element={<Gestorfondos/>}/>
+                <Route  exact path="/" element={<Home/>}/>
             </Routes >
           </Stack>
         </Provider>
