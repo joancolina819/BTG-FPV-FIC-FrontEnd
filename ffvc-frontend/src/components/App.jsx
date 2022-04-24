@@ -1,7 +1,7 @@
-import Historial from "./components/Historial";
-import generateStore from "./redux/store";
+import Historial from "./Historial";
+import generateStore from "../redux/store";
 import { Provider } from "react-redux";
-import Banner from "./components/Banner";
+import Banner from "./Banner";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 
@@ -19,7 +19,7 @@ export default function App() {
       },
       text:{
         primary: '#404040',
-        secondary: '#7F7F7F'
+        secondary: '#FFFFFF'
       }
     },
     typography:{
