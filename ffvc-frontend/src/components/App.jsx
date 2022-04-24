@@ -4,6 +4,8 @@ import Banner from "./Banner";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import NavBar from "./NavBar";
 import { Divider } from "@mui/material";
+import Historial from "./Historial";
+import { Stack } from "@mui/material";
 
 
 export default function App() {
@@ -33,7 +35,10 @@ export default function App() {
       <Provider store={store}>
         <Banner />
         <Divider/>
-        <NavBar />
+        <Stack spacing={1} direction = "row" divider={<Divider  />}  > 
+          <NavBar />
+          <Historial/>
+        </Stack>
       </Provider>
     </ThemeProvider>
   );
