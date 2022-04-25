@@ -5,8 +5,6 @@ import Notificacion from "./Notificacion";
 import {useSelector, useDispatch} from 'react-redux'
 import {get_client} from '../redux/fondoDuck'
 import BTG_logo from '../assets/btg-portada.jpg'
-import {Navbar} from 'react-materialize'
-import {Link} from "react-router-dom";
 
 export default function Banner(){
 
@@ -25,15 +23,6 @@ export default function Banner(){
     }, [dispatch]);
 
     return(
-      // <Navbar
-      //   alignLinks="right"
-      //   centerChildren
-      //   className="indigo darken-4"
-      //   id="mobile-nav"
-
-      //   >
-      //     <Link to="historial">test</Link>
-      // </Navbar>
         <Box   sx={{
             width: "full",
             height: 55,
