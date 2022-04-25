@@ -47,7 +47,7 @@ export default function GestorFondos(){
       dispatch(suscribirseAction(client["_id"],all_fondos_select[0]))
       dispatch(get_client())
       dispatch(get_fondos_propios(client["_id"]))
-      setMensajeNotificacion(mensaje[0])
+      setMensajeNotificacion(mensaje)
       setSeverity("info")
       setOpen(true)
     }
@@ -56,9 +56,10 @@ export default function GestorFondos(){
       dispatch(cancelacionAction(client["_id"],my_fondos_select[0]))
       dispatch(get_client())
       dispatch(get_fondos_propios(client["_id"]))
-      setMensajeNotificacion(mensaje[0])
+      setMensajeNotificacion(mensaje)
       setSeverity("info")
       setOpen(true)
+
     }
 
     
@@ -75,9 +76,10 @@ export default function GestorFondos(){
                         mensaje="Fondos vinculados" 
                         color="primary.main" 
                         fontWeight="bold" 
-                        minHeight={300} 
+                        minHeight={250} 
                         width={900}
-                        setFondo={set_my_fondos_select}/>
+                        setFondo={set_my_fondos_select}
+                        checkboxSelection={true}/>
             <br />
             <Button onClick={cancelarFondo} variant="contained">Cancelar fondo</Button>
             <DataTable  columns={columns} 
@@ -85,9 +87,10 @@ export default function GestorFondos(){
                         mensaje="Todos los fondos" 
                         color="primary.main" 
                         fontWeight="bold" 
-                        minHeight={350} 
+                        minHeight={250} 
                         width={900}
-                        setFondo={set_all_fondos_select}/>
+                        setFondo={set_all_fondos_select}
+                        checkboxSelection={true}/>
             <br />
             <Button onClick={suscribirFondo} variant="contained">Suscribirse a fondo</Button>
             <Notificacion open={open} setOpen={setOpen} mensaje_notificacion={mensajeNotificacion} severity={severity}/>

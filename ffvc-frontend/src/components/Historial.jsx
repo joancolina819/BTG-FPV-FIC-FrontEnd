@@ -57,7 +57,8 @@ export default function Historial(){
                   color="primary.main" 
                   fontWeight="bold" 
                   minHeight={400} 
-                  width={1250}/>
+                  width={1200}
+                  checkboxSelection={false}/>
       </Box>
     )
 }

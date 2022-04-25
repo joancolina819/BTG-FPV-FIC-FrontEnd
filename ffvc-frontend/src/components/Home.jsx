@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Stack} from '@mui/material';
 import Mensaje from "./Mensaje";
-import {useSelector} from 'react-redux'
 import Paper from '@material-ui/core/Paper';
 import {
   Chart,
@@ -9,46 +8,54 @@ import {
   Title
 } from '@devexpress/dx-react-chart-material-ui';
 import Bars from 'react-bars';
-
+import {useSelector, useDispatch} from 'react-redux'
+import {get_fondos_propios,} from '../redux/fondoDuck'
 
 export default function Home(){
 
+    const dispatch = useDispatch()
+
     const client = useSelector(store=> store.fondos.client)
-    const data = [
-        { argument:'Monday', value:10 },
-        { argument:'Tuesday', value:40 },
-        { argument:'Wednesday', value:10 },
-        { argument:'Thursday', value:20 },
-        { argument:'Friday', value:20 },
-      ];
-    
-    const testData =[
-          {label:'Javascript', value:85},
-          {label:'C++', value: 82},
-          {label:'React', value:80},
-          {label:'Node.js', value:75},
-          {label:'HTML5', value:72, barColor:'red'},
-          {label:'CSS', value:68},
-          {label:'JQuery', value:65},
-          {label:'Bootstrap', value:60},
-          {label:'Python', value:50},
-          {label:'Angular.js', value:45},
-        ]
+    const myfondos=useSelector(store=> store.fondos.fondos_propios)
+
+    const [dataBars, set_dataBars] = React.useState([]);
+    const [dataPaper, set_dataPaper] = React.useState([]);
+
+    const prepararDataBar =() =>{
+        const dataAuxBars=[]
+        const dataAuxPaper=[]
+         for (let i = 0; i < myfondos.length; i++) {
+            const barItemBars = {label:myfondos[i].nombre, value:myfondos[i].monto_minimo_vinculacion/10000}
+            dataAuxBars.push(barItemBars)
+
+            const barItemPaper = {argument:myfondos[i].nombre, value:myfondos[i].monto_minimo_vinculacion/10000}
+            dataAuxPaper.push(barItemPaper)
+
+        }
+        set_dataPaper(dataAuxPaper)
+        set_dataBars(dataAuxBars)
+    }
+
+    React.useEffect(()=>{
+            dispatch(get_fondos_propios(client["_id"]))
+            prepararDataBar()
+          }, [dispatch]);
 
     return(
         <Box px="30px" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main", height: "auto", width: 'auto' }}>
             <Stack>
                 <Mensaje tipo = "h5" mensaje ={"Bienvenido de regreso "+client.nombre+" "+client.apellido} color ="primary.main" fontWeight="blod"/>
+                <Paper>
+                    <Chart
+                    data={dataPaper}
+                    >
+                    <PieSeries valueField="value" argumentField="argument" />
+                    <Title text="Inversiones por fondo"/>
+                    </Chart>
+                </Paper>
+                <br/>
+                <Bars data={dataBars} makeUppercase={true}/>
             </Stack>
-            <Paper>
-                <Chart
-                data={data}
-                >
-                <PieSeries valueField="value" argumentField="argument" />
-                <Title text="Inversiones por fondo"/>
-                </Chart>
-            </Paper>
-            <Bars data={testData} makeUppercase={true}/>
         </Box>
     )
 }

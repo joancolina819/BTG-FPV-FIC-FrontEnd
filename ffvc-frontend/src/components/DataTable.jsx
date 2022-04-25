@@ -8,7 +8,6 @@ export default function DataTable(props){
 
     return(
         <div style={{ height: "auto", width: '100%' }}>
-            <br />
             <Mensaje tipo = {props.tipo} mensaje ={props.mensaje} color ={props.color} fontWeight={props.fontWeight}/>
             <br />
             <Divider/>
@@ -18,7 +17,8 @@ export default function DataTable(props){
                 rows={props.row}
                 columns={props.columns}
                 rowHeight={30}
-                checkboxSelection
+                checkboxSelection = {props.checkboxSelection}
+                density='compact'
                 onSelectionModelChange={(id)=>{
                     props.setFondo(id);
                 }}

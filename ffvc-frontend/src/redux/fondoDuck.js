@@ -7,7 +7,7 @@ const data_inicial={
     fondos : [],
     historial: [],
     fondos_propios: [],
-    peticion_mensaje:[]
+    peticion_mensaje:""
 }
 
 //################################## TIPOS DE ACCIONES ######################333
@@ -94,7 +94,7 @@ export const get_historial=()=> async (dispatch, getState) =>{
 export const get_client=()=> async (dispatch, getState) =>{
 
     try{
-        axios.get("http://127.0.0.1:8000/2FVC/usuario")
+        axios.get("http://127.0.0.1:8000/2FVC/usuario?client_name=Joan%20David&client_last_name=Colina%20Echeverry")
         .then((response)=>{
             dispatch({
                 type: GET_CLIENT,
@@ -138,6 +138,18 @@ export const cancelacionAction=(id_client, id_fondo)=> async (dispatch, getState
                 payload: response["data"]
             })
         })
+        .catch((error)=>{
+            console.log(error)
+        })
+    }catch(error){
+        console.log(error)
+    }
+}
+
+export const prepararDatosAction=()=> async (dispatch, getState) =>{
+
+    try{            
+        axios.post("http://127.0.0.1:8000/2FVC/datapreparation")
         .catch((error)=>{
             console.log(error)
         })
