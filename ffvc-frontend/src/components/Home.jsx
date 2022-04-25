@@ -5,6 +5,7 @@ import {get_fondos_propios} from '../redux/fondoDuck'
 import Mensaje from "./Mensaje";
 import Graficas from "./Graficas";
 
+
 export default function Home(){
 
     const dispatch = useDispatch()

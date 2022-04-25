@@ -5,6 +5,7 @@ import Notificacion from "./Notificacion";
 import {useSelector, useDispatch} from 'react-redux'
 import {get_client} from '../redux/fondoDuck'
 import BTG_logo from '../assets/btg-portada.jpg'
+import InformacionUsuario from "./InformacionUsuario";
 
 export default function Banner(){
 
@@ -25,7 +26,7 @@ export default function Banner(){
     return(
         <Box   sx={{
             width: "full",
-            height: 55,
+            height: 70,
             backgroundColor: 'primary.main',
             border:2,
             borderRadius:2,
@@ -38,7 +39,8 @@ export default function Banner(){
                   <Mensaje tipo ="h6" mensaje ="Usuario:" width = "20%" color ='text.secondary' />
                   <Mensaje tipo ="h5" mensaje ={client.nombre+" "+client.apellido} width = "100%" color ='text.secondary' fontWeight = 'bold'/>
                   <Mensaje tipo ="h6" mensaje ="Dinero liquido:" width = "30%" color ='text.secondary' />
-                  <Mensaje tipo ="h5" mensaje ={client.presupuesto} width = "100%" color ='text.secondary' fontWeight = 'bold'/>
+                  <Mensaje tipo ="h5" mensaje ={client.presupuesto} width = "50%" color ='text.secondary' fontWeight = 'bold'/>
+                  <InformacionUsuario cliente={client}/>
                 </Stack>
               </Box>
             </Stack>
