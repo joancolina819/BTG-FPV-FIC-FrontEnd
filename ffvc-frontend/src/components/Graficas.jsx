@@ -45,6 +45,7 @@ export default function Graficas(){
                         </Chart>
                     </PaperGrafica>
                 </Box>
+
                 <Stack spacing ={2} direction="row" >
                     <Box sx={{width: '100%'  }}>
                         <Mensaje tipo = "h5" mensaje ="Inversiones por fondo"color ="text.primary" />
@@ -72,6 +73,7 @@ export default function Graficas(){
                     </Box>
                 </Stack>
             </Stack>
+            
             <Stack spacing ={2} direction="row" divider={<Divider  orientation="vertical" flexItem />}>
                 <Box textAlign="center" sx={{width: '60%'  }}>
                     <Stack spacing ={1} >

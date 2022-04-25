@@ -26,7 +26,6 @@ export default function Banner(){
     return(
       <AppBar 
           color= 'primary' 
-          enableColorOnDark
           sx={{
             border:2,
             borderRadius:2,
@@ -35,12 +34,12 @@ export default function Banner(){
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <img src={BTG_logo} alt="LogoBTG"></img>
-              <Mensaje tipo ="h6" mensaje ="Usuario:"  color ='text.secondary' />
-              <Mensaje tipo ="h5" mensaje ={client.nombre+" "+client.apellido} width = "40%" color ='text.secondary' fontWeight = 'bold'/>
-              <Mensaje tipo ="h6" mensaje ="Capital:"  color ='text.secondary' />
-              <Mensaje tipo ="h5" mensaje ={client.presupuesto} width = "60%"  color ='text.secondary' fontWeight = 'bold'/>
-              <InformacionUsuario cliente={client}/>
-              <Notificacion open={open} setOpen={setOpen} mensaje_notificacion={mensajeNotificacion} severity={severity}/>
+            <Mensaje tipo ="h6" mensaje ="Usuario:"  color ='text.secondary' />
+            <Mensaje tipo ="h5" mensaje ={client.nombre+" "+client.apellido} width = "40%" color ='text.secondary' fontWeight = 'bold'/>
+            <Mensaje tipo ="h6" mensaje ="Capital:"  color ='text.secondary' />
+            <Mensaje tipo ="h5" mensaje ={client.presupuesto} width = "60%"  color ='text.secondary' fontWeight = 'bold'/>
+            <InformacionUsuario cliente={client}/>
+            <Notificacion open={open} setOpen={setOpen} mensaje_notificacion={mensajeNotificacion} severity={severity}/>
           </Toolbar>
         </Container>
       </AppBar>

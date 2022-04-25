@@ -35,10 +35,10 @@ export default function NavBar(){
             }}>
             <br/>
             <Stack spacing={1} divider={<Divider  />}  > 
-            <Link to=""><Button sx={{ width: '100%' }} variant="contained">Home</Button></Link>
-            <Link to="gestorfondos"><Button sx={{ width: '100%' }} variant="contained">Gestiona tus fondos</Button></Link>
-            <Link to="historial"><Button sx={{ width: '100%' }} variant="contained">Historial de transacciones</Button></Link>
-            <Button onClick={prepararDatos} sx={{ width: '100%' }} variant="contained">Preparar datos O corregir datos</Button>
+                <Link to=""><Button sx={{ width: '100%' }} variant="contained">Home</Button></Link>
+                <Link to="gestorfondos"><Button sx={{ width: '100%' }} variant="contained">Gestiona tus fondos</Button></Link>
+                <Link to="historial"><Button sx={{ width: '100%' }} variant="contained">Historial de transacciones</Button></Link>
+                <Button onClick={prepararDatos} sx={{ width: '100%' }} variant="contained">Preparar datos O corregir datos</Button>
             </Stack>
             <Notificacion open={open} setOpen={setOpen} mensaje_notificacion={mensajeNotificacion} severity={severity}/>
         </Box>

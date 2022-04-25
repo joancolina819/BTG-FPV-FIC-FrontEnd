@@ -32,10 +32,10 @@ export default function InformacionUsuario() {
                 <Mensaje tipo ="h6" fontSize = {10} mensaje ="Mas informacion" width = "auto" color ='text.secondary' />
             </Button>
             <Drawer
-            anchor={'right'}
-            open={state['right']}
-            onClose={toggleDrawer('right', false)}
-            >
+                anchor={'right'}
+                open={state['right']}
+                onClose={toggleDrawer('right', false)}
+                >
                 <Box role="presentation" onClick={toggleDrawer('right', false)} onKeyDown={toggleDrawer('right', false)}>
                     <List>
                         {dataUser.map((text) => (

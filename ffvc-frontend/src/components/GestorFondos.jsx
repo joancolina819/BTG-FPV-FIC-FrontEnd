@@ -98,6 +98,7 @@ export default function GestorFondos(){
                           checkboxSelection={true}/>
               <Button sx={{  height:"100%" }}onClick={cancelarFondo} variant="contained">Cancelar fondo</Button>
             </Stack>
+            
             <Mensaje tipo = "h5" mensaje="Todos los fondos disponibles"  color="primary.main" fontWeight="bold"/>
             <Divider/>
             <Stack spacing ={2} direction="row" >
