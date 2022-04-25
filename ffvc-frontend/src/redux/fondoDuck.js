@@ -41,7 +41,7 @@ export default function fondoReducer(state= data_inicial, action){
 export const get_fondos=()=> async (dispatch, getState) =>{
 
     try{
-        axios.get("http://127.0.0.1:8000/2FVC/fondos")
+        axios.get(process.env.REACT_APP_SERVER_BASE_URL+"/fondos")
         .then((response)=>{
             dispatch({
                 type: GET_FONDOS,
@@ -58,7 +58,7 @@ export const get_fondos=()=> async (dispatch, getState) =>{
 
 export const get_fondos_propios=(id_client)=> async (dispatch, getState) =>{
     try{
-        axios.get("http://127.0.0.1:8000/2FVC/myfondos?id_client="+id_client)
+        axios.get(process.env.REACT_APP_SERVER_BASE_URL+"/myfondos?id_client="+id_client)
         .then((response)=>{
             dispatch({
                 type: GET_FONDOS_PROPIOS,
@@ -76,7 +76,7 @@ export const get_fondos_propios=(id_client)=> async (dispatch, getState) =>{
 export const get_historial=()=> async (dispatch, getState) =>{
 
     try{
-        axios.get("http://127.0.0.1:8000/2FVC/historial")
+        axios.get(process.env.REACT_APP_SERVER_BASE_URL+"/historial")
         .then((response)=>{
             dispatch({
                 type: GET_HISTORIAL,
@@ -94,7 +94,7 @@ export const get_historial=()=> async (dispatch, getState) =>{
 export const get_client=()=> async (dispatch, getState) =>{
 
     try{
-        axios.get("http://127.0.0.1:8000/2FVC/usuario?client_name=Joan%20David&client_last_name=Colina%20Echeverry")
+        axios.get(process.env.REACT_APP_SERVER_BASE_URL+"/usuario?client_name=Joan%20David&client_last_name=Colina%20Echeverry")
         .then((response)=>{
             dispatch({
                 type: GET_CLIENT,
@@ -112,7 +112,7 @@ export const get_client=()=> async (dispatch, getState) =>{
 export const suscribirseAction=(id_client, id_fondo)=> async (dispatch, getState) =>{
 
     try{            
-        axios.post("http://127.0.0.1:8000/2FVC/suscripcion?id_client="+id_client+"&id_fondo="+id_fondo)
+        axios.post(process.env.REACT_APP_SERVER_BASE_URL+"/suscripcion?id_client="+id_client+"&id_fondo="+id_fondo)
         .then((response)=>{
             console.log(response["data"])
             dispatch({
@@ -131,7 +131,7 @@ export const suscribirseAction=(id_client, id_fondo)=> async (dispatch, getState
 export const cancelacionAction=(id_client, id_fondo)=> async (dispatch, getState) =>{
 
     try{            
-        axios.post("http://127.0.0.1:8000/2FVC/cancelacion?id_client="+id_client+"&id_fondo="+id_fondo)
+        axios.post(process.env.REACT_APP_SERVER_BASE_URL+"/cancelacion?id_client="+id_client+"&id_fondo="+id_fondo)
         .then((response)=>{
             dispatch({
                 type: PETICION_MENSAJE,
@@ -149,7 +149,7 @@ export const cancelacionAction=(id_client, id_fondo)=> async (dispatch, getState
 export const prepararDatosAction=()=> async (dispatch, getState) =>{
 
     try{            
-        axios.post("http://127.0.0.1:8000/2FVC/datapreparation")
+        axios.post(process.env.REACT_APP_SERVER_BASE_URL+"/datapreparation")
         .catch((error)=>{
             console.log(error)
         })

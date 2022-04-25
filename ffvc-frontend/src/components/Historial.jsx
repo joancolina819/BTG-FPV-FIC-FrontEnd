@@ -2,42 +2,54 @@ import React from "react";
 import {useSelector, useDispatch} from 'react-redux'
 import {get_historial} from '../redux/fondoDuck'
 import DataTable from "./DataTable";
-import Box from '@mui/material/Box';
+import Mensaje from "./Mensaje";
+import { Divider,Box } from "@mui/material";
 
 export default function Historial(){
 
     const columns = [
-        { field: 'id', headerName: 'ID de registro', width: 150 },
+        { 
+          field: 'id', 
+          headerName: 'ID de registro', 
+          width: 150,
+          description:"Identificador del registro del historial de transacciones"
+        },
         {
           field: 'nombre',
           headerName: 'Nombre',
           width: 150,
+          description:"Nombre del cliente que realizo la operacion"
         },
         {
           field: 'apellido',
           headerName: 'Apellido',
           width: 150,
+          description:"Apellido del cliente que realizo la operacion"
         },
         {
           field: 'edad',
           headerName: 'Edad',
           width: 110,
+          description:"Edad del cliente que realizo la operacion"
         },
         {
-            field: 'hora de transaccion',
-            headerName: 'Hora de transaccion',
-            width: 250,
-          },
-          {
-            field: 'fondo',
-            headerName: 'Fondo',
-            width: 210,
-          },
-          {
-            field: 'tipo de transaccion',
-            headerName: 'Tipo de transaccion',
-            width: 170,
-          },
+          field: 'hora de transaccion',
+          headerName: 'Hora de transaccion',
+          width: 250,
+          description:"Hora de realizacion de la transaccion"
+        },
+        {
+          field: 'fondo',
+          headerName: 'Fondo',
+          width: 210,
+          description:"Nombre del fondo natural asociado a la transaccion"
+        },
+        {
+          field: 'tipo de transaccion',
+          headerName: 'Tipo de transaccion',
+          width: 170,
+          description:"Puede tomar los valores de SUSCRIPCION O CANCELACION"
+        },
       ];
       
     const historial = useSelector(store=> store.fondos.historial)
@@ -49,14 +61,14 @@ export default function Historial(){
     }, [dispatch]);
 
     return(
-      <Box sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main", height: "auto", width: 'auto' }}>
+      <Box textAlign="center" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main",minHeight:550, height: "auto", width: 'auto' }}>
+        <Mensaje tipo = "h5" mensaje="Historial de transacciones"  color="primary.main" fontWeight="bold"/>
+        <Divider/>
+        <br />
         <DataTable  columns={columns} 
                   row={historial} 
-                  tipo="h5" 
-                  mensaje="Historial de transacciones de los fondos" 
-                  color="primary.main" 
-                  fontWeight="bold" 
-                  minHeight={400} 
+                  minHeight={300} 
+                  maxHeight={500} 
                   width={1200}
                   checkboxSelection={false}/>
       </Box>

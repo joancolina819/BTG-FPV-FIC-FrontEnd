@@ -1,12 +1,9 @@
 import React from "react";
-import Box from '@mui/material/Box';
-import { Button } from "@mui/material";
-import { Stack } from "@mui/material";
-import { Divider } from "@mui/material";
+import { Stack,Button, Divider, Box} from "@mui/material";
 import {Link} from "react-router-dom";
-import Notificacion from "./Notificacion";
 import {useSelector, useDispatch} from 'react-redux'
 import {get_fondos_propios,get_client,prepararDatosAction} from '../redux/fondoDuck'
+import Notificacion from "./Notificacion";
 
 export default function NavBar(){
 
@@ -29,9 +26,12 @@ export default function NavBar(){
     return(
         <Box sx={{
                 width: 250,
-                height: 800,
+                height: "auto",
                 backgroundColor: 'secondary.light',
-                minWidth:250
+                minWidth:250,
+                border:2,
+                borderRadius:2,
+                borderColor: "primary.main",
             }}>
             <br/>
             <Stack spacing={1} divider={<Divider  />}  > 

@@ -1,11 +1,10 @@
 import React from "react";
-import Box from '@mui/material/Box';
-import { Stack } from "@mui/material";
+import { Stack,Box } from "@mui/material";
 import Mensaje from "./Mensaje";
 import Notificacion from "./Notificacion";
 import {useSelector, useDispatch} from 'react-redux'
 import {get_client} from '../redux/fondoDuck'
-// import BTG_logo from '../assets/btg-portada.jpg'
+import BTG_logo from '../assets/btg-portada.jpg'
 
 export default function Banner(){
 
@@ -24,17 +23,24 @@ export default function Banner(){
     }, [dispatch]);
 
     return(
-        <Box sx={{
+        <Box   sx={{
             width: "full",
-            height: 100,
+            height: 55,
             backgroundColor: 'primary.main',
+            border:2,
+            borderRadius:2,
+            borderColor: "primary.main"
           }} >
-            <Stack spacing={2} direction="row"sx={{pl:50,pt:4}} >
-              {/* <img src={BTG_logo}></img> */}
-              <Mensaje tipo ="h5" mensaje ="Usuario:" width = "100%" color ='text.secondary' fontWeight = 'bold'/>
-              <Mensaje tipo ="h6" mensaje ={client.nombre+" "+client.apellido} width = "100%" color ='text.secondary' />
-              <Mensaje tipo ="h5" mensaje ="Dinero liquido:" width = "100%" color ='text.secondary' fontWeight = 'bold'/>
-              <Mensaje tipo ="h6" mensaje ={client.presupuesto} width = "100%" color ='text.secondary' />
+            <Stack direction="row" >
+              <img src={BTG_logo}></img>
+              <Box sx={{ width: "100%",pl:10,pt:1}}>
+                <Stack direction="row" >
+                  <Mensaje tipo ="h6" mensaje ="Usuario:" width = "20%" color ='text.secondary' />
+                  <Mensaje tipo ="h5" mensaje ={client.nombre+" "+client.apellido} width = "100%" color ='text.secondary' fontWeight = 'bold'/>
+                  <Mensaje tipo ="h6" mensaje ="Dinero liquido:" width = "30%" color ='text.secondary' />
+                  <Mensaje tipo ="h5" mensaje ={client.presupuesto} width = "100%" color ='text.secondary' fontWeight = 'bold'/>
+                </Stack>
+              </Box>
             </Stack>
             <Notificacion open={open} setOpen={setOpen} mensaje_notificacion={mensajeNotificacion} severity={severity}/>
         </Box>
