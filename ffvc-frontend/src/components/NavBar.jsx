@@ -25,10 +25,10 @@ export default function NavBar(){
 
     return(
         <Box sx={{
-                width: 250,
+                width: "20%",
                 height: "auto",
                 backgroundColor: 'secondary.light',
-                minWidth:250,
+                minWidth:100,
                 border:2,
                 borderRadius:2,
                 borderColor: "primary.main",

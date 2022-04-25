@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack,Box } from "@mui/material";
+import { AppBar,Container,Toolbar} from "@mui/material";
 import Mensaje from "./Mensaje";
 import Notificacion from "./Notificacion";
 import {useSelector, useDispatch} from 'react-redux'
@@ -21,30 +21,28 @@ export default function Banner(){
       setMensajeNotificacion("Usuario " +client["nombre"]+" cargado exitosamente")
       setSeverity("info")
       setOpen(true)
-    }, [dispatch]);
+    }, [dispatch,client]);
 
     return(
-        <Box   sx={{
-            width: "full",
-            height: 70,
-            backgroundColor: 'primary.main',
+      <AppBar 
+          color= 'primary' 
+          enableColorOnDark
+          sx={{
             border:2,
             borderRadius:2,
-            borderColor: "primary.main"
-          }} >
-            <Stack direction="row" >
-              <img src={BTG_logo}></img>
-              <Box sx={{ width: "100%",pl:10,pt:1}}>
-                <Stack direction="row" >
-                  <Mensaje tipo ="h6" mensaje ="Usuario:" width = "20%" color ='text.secondary' />
-                  <Mensaje tipo ="h5" mensaje ={client.nombre+" "+client.apellido} width = "100%" color ='text.secondary' fontWeight = 'bold'/>
-                  <Mensaje tipo ="h6" mensaje ="Dinero liquido:" width = "30%" color ='text.secondary' />
-                  <Mensaje tipo ="h5" mensaje ={client.presupuesto} width = "50%" color ='text.secondary' fontWeight = 'bold'/>
-                  <InformacionUsuario cliente={client}/>
-                </Stack>
-              </Box>
-            </Stack>
-            <Notificacion open={open} setOpen={setOpen} mensaje_notificacion={mensajeNotificacion} severity={severity}/>
-        </Box>
+          }} 
+          position="static">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <img src={BTG_logo} alt="LogoBTG"></img>
+              <Mensaje tipo ="h6" mensaje ="Usuario:"  color ='text.secondary' />
+              <Mensaje tipo ="h5" mensaje ={client.nombre+" "+client.apellido} width = "40%" color ='text.secondary' fontWeight = 'bold'/>
+              <Mensaje tipo ="h6" mensaje ="Capital:"  color ='text.secondary' />
+              <Mensaje tipo ="h5" mensaje ={client.presupuesto} width = "60%"  color ='text.secondary' fontWeight = 'bold'/>
+              <InformacionUsuario cliente={client}/>
+              <Notificacion open={open} setOpen={setOpen} mensaje_notificacion={mensajeNotificacion} severity={severity}/>
+          </Toolbar>
+        </Container>
+      </AppBar>
     )
 }

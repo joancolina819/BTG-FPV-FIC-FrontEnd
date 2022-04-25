@@ -61,15 +61,15 @@ export default function Historial(){
     }, [dispatch]);
 
     return(
-      <Box textAlign="center" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main",minHeight:550, height: "auto", width: 'auto' }}>
+      <Box textAlign="center" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main",minHeight:550, height: "100%", width: '100%' }}>
         <Mensaje tipo = "h5" mensaje="Historial de transacciones"  color="primary.main" fontWeight="bold"/>
         <Divider/>
         <br />
         <DataTable  columns={columns} 
                   row={historial} 
-                  minHeight={300} 
+                  minHeight={500} 
                   maxHeight={500} 
-                  width={1200}
+                  width="100%"
                   checkboxSelection={false}/>
       </Box>
     )

@@ -19,7 +19,7 @@ export default function DataTable(props){
                 Toolbar: GridToolbar,
                 NoRowsOverlay:SinResultados 
             }} 
-            sx={{minHeight:props.minHeight,maxHeight:props.maxHeight, width: props.width}}
+            sx={{minHeight:props.minHeight, maxHeight:props.maxHeight, height:"100%", width: props.width}}
         />
     )
 }

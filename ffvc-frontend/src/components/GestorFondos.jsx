@@ -85,29 +85,29 @@ export default function GestorFondos(){
     }, [dispatch]);
 
     return(
-        <Box textAlign="center" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main", height: "auto", width: 'auto' }}>
+        <Box textAlign="center" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main", height: "auto", width: '100%' }}>
           <Stack spacing ={1}  >
-            <Mensaje tipo = "h5" mensaje="Fondos vinculados"  color="primary.main" fontWeight="bold"/>
+            <Mensaje tipo = "h5" mensaje="Mis fondos vinculados"  color="primary.main" fontWeight="bold"/>
             <Divider/>
             <Stack spacing ={2} direction="row" >
               <DataTable  columns={columns} 
                           row={myfondos} 
                           minHeight={250} 
-                          width={900}
+                          width="100%"
                           setFondo={set_my_fondos_select}
                           checkboxSelection={true}/>
-              <Button sx={{ width: '15%', height:"100%" }}onClick={cancelarFondo} variant="contained">Cancelar fondo</Button>
+              <Button sx={{  height:"100%" }}onClick={cancelarFondo} variant="contained">Cancelar fondo</Button>
             </Stack>
-            <Mensaje tipo = "h5" mensaje="Todos los fondos"  color="primary.main" fontWeight="bold"/>
+            <Mensaje tipo = "h5" mensaje="Todos los fondos disponibles"  color="primary.main" fontWeight="bold"/>
             <Divider/>
             <Stack spacing ={2} direction="row" >
               <DataTable  columns={columns} 
                           row={fondos} 
                           minHeight={250} 
-                          width={900}
+                          width="100%"
                           setFondo={set_all_fondos_select}
                           checkboxSelection={true}/>
-              <Button sx={{ width: "15%", height:"100%" }} onClick={suscribirFondo} variant="contained">Suscribirse a fondo</Button>
+              <Button sx={{  height:"100%" }} onClick={suscribirFondo} variant="contained">Suscribirse a fondo</Button>
             </Stack>
           </Stack>
           <Notificacion open={open} setOpen={setOpen} mensaje_notificacion={mensajeNotificacion} severity={severity}/>
