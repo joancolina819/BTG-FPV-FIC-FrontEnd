@@ -73,7 +73,6 @@ export default function GestorFondos(){
   
     const myfondos=useSelector(store=> store.fondos.fondos_propios)
     const fondos=useSelector(store=> store.fondos.fondos)
-    const mensaje=useSelector(store=> store.fondos.peticion_mensaje)
 
     const [my_fondos_select, set_my_fondos_select] = React.useState([]);
     const [all_fondos_select, set_all_fondos_select] = React.useState([]);
@@ -85,28 +84,32 @@ export default function GestorFondos(){
     var inversion=0
 
     const suscribirFondo = () =>{
+      if(all_fondos_select.length!==0){
+        setMensajeNotificacion("Se debe seleccionar solo un fondo")
+        setSeverity("error")
+        setOpen(true)
+      }
+      if(
+        inversion>client["presupuesto"]||
+        client["presupuesto"]<fondos[all_fondos_select[0]-1]["monto_minimo_vinculacion"]||
+        inversion<fondos[all_fondos_select[0]-1]["monto_minimo_vinculacion"])
+        {
+          setMensajeNotificacion("No tiene saldo disponible para vincularse al fondo "+fondos[all_fondos_select[0]-1]["nombre"])
+          setSeverity("error")
+          setOpen(true)
+      }
       if(all_fondos_select.length===1&&validarInversion()){
         dispatch(suscribirseAction(client["_id"],all_fondos_select[0],inversion))
         dispatch(get_client())
         dispatch(get_fondos_propios(client["_id"]))
-        setMensajeNotificacion(mensaje)
+        setMensajeNotificacion("Peticion realizada.")
         setSeverity("info")
-        setOpen(true)
-      }else{
-        setMensajeNotificacion("la inversion no es valida")
-        setSeverity("error")
         setOpen(true)
       }
     }
 
     const validarInversion=()=>{
-        console.log("inversion:"+inversion)
-        console.log("presupuesto:"+client["presupuesto"])
-        console.log("id fondo seleccionado:"+all_fondos_select[0])
-        console.log(fondos)
-        console.log(fondos[all_fondos_select[0]-1])
         const montoMinimo=fondos[all_fondos_select[0]-1]["monto_minimo_vinculacion"]
-        console.log("monto minimo:"+montoMinimo)
         if(inversion<=client["presupuesto"]&&inversion>=montoMinimo){
           console.log("entro")
           return true
@@ -116,10 +119,10 @@ export default function GestorFondos(){
     }
     const cancelarFondo = () =>{
       if(my_fondos_select.length===1){
-        dispatch(cancelacionAction(client["_id"],my_fondos_select[0]))
+        dispatch(cancelacionAction(client["_id"],my_fondos_select[0],fondos[all_fondos_select[0]-1]["inversion_cliente"]))
         dispatch(get_client())
         dispatch(get_fondos_propios(client["_id"]))
-        setMensajeNotificacion(mensaje)
+        setMensajeNotificacion("peticion realizada")
         setSeverity("info")
         setOpen(true)
       }else{

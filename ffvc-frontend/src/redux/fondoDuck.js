@@ -128,10 +128,10 @@ export const suscribirseAction=(id_client, id_fondo, inversion)=> async (dispatc
     }
 }
 
-export const cancelacionAction=(id_client, id_fondo)=> async (dispatch, getState) =>{
+export const cancelacionAction=(id_client, id_fondo,invesment)=> async (dispatch, getState) =>{
 
     try{            
-        axios.post(process.env.REACT_APP_SERVER_BASE_URL+"/cancelacion?id_client="+id_client+"&id_fondo="+id_fondo)
+        axios.post(process.env.REACT_APP_SERVER_BASE_URL+"/cancelacion?id_client="+id_client+"&id_fondo="+id_fondo+"&invesment="+invesment)
         .then((response)=>{
             dispatch({
                 type: PETICION_MENSAJE,
