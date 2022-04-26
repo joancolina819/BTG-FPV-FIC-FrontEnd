@@ -53,7 +53,7 @@ export default function Graficas(){
                         <br />
                         <Bars data={dataBars} makeUppercase={true}/>
                     </Box>
-                    <Box >
+                    <Box sx={{width: '1%'  }}>
                         <br />
                         <br />
                         <br />         

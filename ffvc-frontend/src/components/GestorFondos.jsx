@@ -170,7 +170,7 @@ export default function GestorFondos(){
                           setFondo={set_all_fondos_select}
                           checkboxSelection={true}/>
               <Stack spacing ={2}>
-                <Button sx={{  height:"100%" }} onClick={suscribirFondo} variant="contained">Suscribirse a fondo</Button>
+                <Button sx={{  height:"15%" }} onClick={suscribirFondo} variant="contained">Suscribirse a fondo</Button>
                 <TextField
                   id="outlined-number"
                   label="Inversion"
