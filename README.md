@@ -15,10 +15,10 @@ docker run -d --name ffcv -p 3000:3000 ffcv/ffcv
 
 Pasos para la ejecucion del codigo sin utilizar Docker (Se da por supuesto que ya se tiene node instalado y puede ejecutar comando npm):
 
-1. Para la creaciion de la imagen Docker utilizar:
+1. Para la descarga de todas las dependencias
 
 npm install
 
-2. Para la creacion del contenedor docker:
+2. Para la ejecucion del servidor y levantar la interfaz grafica
 
 npm start
