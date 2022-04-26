@@ -20,7 +20,8 @@ export default function InformacionUsuario() {
         "Correo Electronico: "+client.correoElectronico,
         "Edad del cliente: "+client.edad, 
         "Dinero del cliente: "+client.presupuesto,
-        "Identificacion del cliente: "+client.identifcacion]
+        "Identificacion del cliente: "+client.identifcacion,
+        "NOTA IMPORTANTE: Solo se puede realizar un suscripcion por fondo"]
 
     const toggleDrawer =(anchor, open) =>(event: React.KeyboardEvent | React.MouseEvent) => {
       setState({ ...state, [anchor]: open });

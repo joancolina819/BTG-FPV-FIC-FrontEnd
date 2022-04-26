@@ -3,13 +3,14 @@ import { Box, Stack,Divider} from '@mui/material';
 import {Chart,PieSeries,Title} from '@devexpress/dx-react-chart-material-ui';
 import {Paper } from '@material-ui/core';
 import Bars from 'react-bars';
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import Mensaje from "./Mensaje";
-
+import {get_fondos_propios} from '../redux/fondoDuck'
 
 export default function Graficas(){
 
-
+    const dispatch = useDispatch()
+    const client = useSelector(store=> store.fondos.client)
     const myfondos=useSelector(store=> store.fondos.fondos_propios)
 
     const [dataBars, set_dataBars] = React.useState([]);
@@ -30,8 +31,9 @@ export default function Graficas(){
     }
       
     React.useEffect(()=>{
-            prepararDataBar()
-          }, []);
+        dispatch(get_fondos_propios(client["_id"]))
+        prepararDataBar()
+          }, [prepararDataBar]);
 
     return(
         <Box px="30px" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main", height: "auto", width: 'auto' }}>
