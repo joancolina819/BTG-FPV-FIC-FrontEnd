@@ -93,6 +93,12 @@ export default function GestorFondos(){
           setSeverity("error")
           setOpen(true)
       }
+      if(all_fondos_select.length!==1)
+        {
+          setMensajeNotificacion("Seleccion unicamente un fondo")
+          setSeverity("error")
+          setOpen(true)
+      }
       if(all_fondos_select.length===1&&validarInversion()){
         dispatch(suscribirseAction(client["_id"],all_fondos_select[0],inversion))
         dispatch(get_client())
@@ -141,6 +147,7 @@ export default function GestorFondos(){
         <Box textAlign="center" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main", height: "auto", width: '100%' }}>
           <Stack spacing ={1}  >
             <Mensaje tipo = "h5" mensaje="Mis fondos vinculados"  color="primary.main" fontWeight="bold"/>
+            <Mensaje tipo = "h7" fontSize={12} mensaje="Por favor selecciona un fondo a la vez para la cancelacion"  color="primary.main" />
             <Divider/>
             <Stack spacing ={2} direction="row" >
               <DataTable  columns={columns_myFondos} 
