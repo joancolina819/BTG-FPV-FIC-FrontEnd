@@ -84,11 +84,6 @@ export default function GestorFondos(){
     var inversion=0
 
     const suscribirFondo = () =>{
-      if(all_fondos_select.length!==0){
-        setMensajeNotificacion("Se debe seleccionar solo un fondo")
-        setSeverity("error")
-        setOpen(true)
-      }
       if(
         inversion>client["presupuesto"]||
         client["presupuesto"]<fondos[all_fondos_select[0]-1]["monto_minimo_vinculacion"]||
@@ -158,6 +153,7 @@ export default function GestorFondos(){
             </Stack>
             
             <Mensaje tipo = "h5" mensaje="Todos los fondos disponibles"  color="primary.main" fontWeight="bold"/>
+            <Mensaje tipo = "h7" fontSize={12} mensaje="Por favor selecciona un fondo a la vez para la vinculacion"  color="primary.main" />
             <Divider/>
             <Stack spacing ={2} direction="row" >
               <DataTable  columns={columns_allFondos} 
