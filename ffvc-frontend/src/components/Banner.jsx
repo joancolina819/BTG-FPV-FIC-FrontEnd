@@ -25,7 +25,6 @@ export default function Banner(){
 
     return(
       <AppBar 
-          color= 'primary' 
           sx={{
             border:2,
             borderRadius:2,

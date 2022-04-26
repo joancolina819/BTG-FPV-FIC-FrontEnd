@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Stack,Divider} from '@mui/material';
 import {Chart,PieSeries,Title} from '@devexpress/dx-react-chart-material-ui';
-import {Paper as PaperGrafica} from '@material-ui/core';
+import {Paper } from '@material-ui/core';
 import Bars from 'react-bars';
 import {useSelector} from 'react-redux'
 import Mensaje from "./Mensaje";
@@ -21,8 +21,8 @@ export default function Graficas(){
         for (let i = 0; i < myfondos.length; i++) {
             const barItemBars = {
                 label:myfondos[i].nombre, 
-                value:myfondos[i].monto_minimo_vinculacion/8000,
-                valueOrigin:myfondos[i].monto_minimo_vinculacion,
+                value:myfondos[i].inversion_cliente/8000,
+                valueOrigin:myfondos[i].inversion_cliente,
             }
             dataAuxBars.push(barItemBars)
         }
@@ -37,12 +37,12 @@ export default function Graficas(){
         <Box px="30px" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main", height: "auto", width: 'auto' }}>
             <Stack spacing ={2} direction="row" divider={<Divider  orientation="vertical" flexItem />}>
                 <Box textAlign="center" sx={{width: '60%'  }}>
-                    <PaperGrafica>
+                    <Paper>
                         <Chart data={dataBars}> 
                         <PieSeries valueField="value" argumentField="label" />
                         <Title text="Inversiones por fondo"/>
                         </Chart>
-                    </PaperGrafica>
+                    </Paper>
                 </Box>
 
                 <Stack spacing ={2} direction="row" >

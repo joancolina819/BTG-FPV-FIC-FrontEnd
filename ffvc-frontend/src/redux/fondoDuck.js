@@ -109,10 +109,10 @@ export const get_client=()=> async (dispatch, getState) =>{
     }
 }
 
-export const suscribirseAction=(id_client, id_fondo)=> async (dispatch, getState) =>{
-
+export const suscribirseAction=(id_client, id_fondo, inversion)=> async (dispatch, getState) =>{
+    console.log(inversion)
     try{            
-        axios.post(process.env.REACT_APP_SERVER_BASE_URL+"/suscripcion?id_client="+id_client+"&id_fondo="+id_fondo)
+        axios.post(process.env.REACT_APP_SERVER_BASE_URL+"/suscripcion?id_client="+id_client+"&id_fondo="+id_fondo+"&invesment="+inversion)
         .then((response)=>{
             console.log(response["data"])
             dispatch({

@@ -4,11 +4,44 @@ import Notificacion from "./Notificacion";
 import Mensaje from "./Mensaje";
 import {useSelector, useDispatch} from 'react-redux'
 import {get_fondos_propios, get_fondos, suscribirseAction,get_client,cancelacionAction} from '../redux/fondoDuck'
-import { Divider, Stack,Button,Box } from "@mui/material";
+import { Divider, Stack,Button,Box, TextField} from "@mui/material";
 
 export default function GestorFondos(){
 
-    const columns = [
+      const columns_myFondos = [
+        { 
+          field: 'id', 
+          headerName: 'ID de fondo', 
+          width: 150,
+          description:"Identificador del fondo"
+        },
+        {
+          field: 'nombre',
+          headerName: 'Nombre',
+          width: 350,
+          description:"Nombre natural fondo"
+        },
+        {
+          field: 'monto_minimo_vinculacion',
+          headerName: 'Monto mínimo de vinculacion al fondo',
+          width: 250,
+          description:"Dinero minimo que debe tener el cliente para suscribirse al fondo"
+        },
+        {
+          field: 'categoria',
+          headerName: 'Categoria',
+          width: 110,
+          description:"Categoria del fondo (FPV: Fondo Voluntario de Pensión, FIC: Fondos de Inversíon Colectiva)"
+        },
+        {
+          field: 'inversion_cliente',
+          headerName: 'Inversioncliente',
+          width: 110,
+          description:"Inversion de cliente"
+        },
+      ];
+
+      const columns_allFondos = [
         { 
           field: 'id', 
           headerName: 'ID de fondo', 
@@ -49,21 +82,38 @@ export default function GestorFondos(){
     const [severity, setSeverity] = React.useState("info");
     const [mensajeNotificacion, setMensajeNotificacion] = React.useState("");
 
+    var inversion=0
+
     const suscribirFondo = () =>{
-      if(all_fondos_select.length===1){
-        dispatch(suscribirseAction(client["_id"],all_fondos_select[0]))
+      if(all_fondos_select.length===1&&validarInversion()){
+        dispatch(suscribirseAction(client["_id"],all_fondos_select[0],inversion))
         dispatch(get_client())
         dispatch(get_fondos_propios(client["_id"]))
         setMensajeNotificacion(mensaje)
         setSeverity("info")
         setOpen(true)
       }else{
-        setMensajeNotificacion("Se debe seleccionar solo un fondo")
+        setMensajeNotificacion("la inversion no es valida")
         setSeverity("error")
         setOpen(true)
       }
     }
 
+    const validarInversion=()=>{
+        console.log("inversion:"+inversion)
+        console.log("presupuesto:"+client["presupuesto"])
+        console.log("id fondo seleccionado:"+all_fondos_select[0])
+        console.log(fondos)
+        console.log(fondos[all_fondos_select[0]-1])
+        const montoMinimo=fondos[all_fondos_select[0]-1]["monto_minimo_vinculacion"]
+        console.log("monto minimo:"+montoMinimo)
+        if(inversion<=client["presupuesto"]&&inversion>=montoMinimo){
+          console.log("entro")
+          return true
+        }else{
+          return false
+        }
+    }
     const cancelarFondo = () =>{
       if(my_fondos_select.length===1){
         dispatch(cancelacionAction(client["_id"],my_fondos_select[0]))
@@ -78,6 +128,11 @@ export default function GestorFondos(){
         setOpen(true)
     }
     }
+
+    const handleChange =(event)=>{
+      inversion = event.target.value
+      console.log(inversion)
+    }
     
     React.useEffect(()=>{
       dispatch(get_fondos())
@@ -90,7 +145,7 @@ export default function GestorFondos(){
             <Mensaje tipo = "h5" mensaje="Mis fondos vinculados"  color="primary.main" fontWeight="bold"/>
             <Divider/>
             <Stack spacing ={2} direction="row" >
-              <DataTable  columns={columns} 
+              <DataTable  columns={columns_myFondos} 
                           row={myfondos} 
                           minHeight={250} 
                           width="100%"
@@ -102,13 +157,24 @@ export default function GestorFondos(){
             <Mensaje tipo = "h5" mensaje="Todos los fondos disponibles"  color="primary.main" fontWeight="bold"/>
             <Divider/>
             <Stack spacing ={2} direction="row" >
-              <DataTable  columns={columns} 
+              <DataTable  columns={columns_allFondos} 
                           row={fondos} 
                           minHeight={250} 
                           width="100%"
                           setFondo={set_all_fondos_select}
                           checkboxSelection={true}/>
-              <Button sx={{  height:"100%" }} onClick={suscribirFondo} variant="contained">Suscribirse a fondo</Button>
+              <Stack spacing ={2}>
+                <Button sx={{  height:"100%" }} onClick={suscribirFondo} variant="contained">Suscribirse a fondo</Button>
+                <TextField
+                  id="outlined-number"
+                  label="Inversion"
+                  type="number"
+                  onChange={handleChange}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </Stack>
             </Stack>
           </Stack>
           <Notificacion open={open} setOpen={setOpen} mensaje_notificacion={mensajeNotificacion} severity={severity}/>

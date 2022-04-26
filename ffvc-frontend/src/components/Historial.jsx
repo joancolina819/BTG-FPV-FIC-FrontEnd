@@ -50,8 +50,14 @@ export default function Historial(){
           width: 170,
           description:"Puede tomar los valores de SUSCRIPCION O CANCELACION"
         },
+        {
+          field: 'inversion',
+          headerName: 'Inversion',
+          width: 170,
+          description:"Inversion que realizo el cliente"
+        },
       ];
-      
+
     const historial = useSelector(store=> store.fondos.historial)
 
     const dispatch = useDispatch()
