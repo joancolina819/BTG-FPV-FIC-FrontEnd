@@ -21,7 +21,7 @@ export default function Banner(){
       setMensajeNotificacion("Usuario " +client["nombre"]+" cargado exitosamente")
       setSeverity("info")
       setOpen(true)
-    }, [dispatch,client]);
+    }, [dispatch]);
 
     return(
       <AppBar 

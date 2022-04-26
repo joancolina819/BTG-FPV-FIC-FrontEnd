@@ -82,7 +82,7 @@ export default function GestorFondos(){
     React.useEffect(()=>{
       dispatch(get_fondos())
       dispatch(get_fondos_propios(client["_id"]))
-    }, [dispatch]);
+    }, [dispatch,client]);
 
     return(
         <Box textAlign="center" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main", height: "auto", width: '100%' }}>

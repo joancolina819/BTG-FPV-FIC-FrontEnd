@@ -27,7 +27,9 @@ export default function Home(){
                 fontWeight="bold"/>
             <Divider/>
             <br />
-            <Graficas/>
+            <Box textAlign="left">
+                <Graficas/>
+            </Box>
         </Box>
     )
 }

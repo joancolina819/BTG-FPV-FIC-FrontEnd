@@ -1,15 +1,14 @@
 import React from "react";
-import { Box, Stack,Divider,Slide, Paper} from '@mui/material';
+import { Box, Stack,Divider} from '@mui/material';
 import {Chart,PieSeries,Title} from '@devexpress/dx-react-chart-material-ui';
 import {Paper as PaperGrafica} from '@material-ui/core';
 import Bars from 'react-bars';
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import Mensaje from "./Mensaje";
 
 
 export default function Graficas(){
 
-    const dispatch = useDispatch()
 
     const myfondos=useSelector(store=> store.fondos.fondos_propios)
 
@@ -32,7 +31,7 @@ export default function Graficas(){
       
     React.useEffect(()=>{
             prepararDataBar()
-          }, [dispatch]);
+          }, []);
 
     return(
         <Box px="30px" sx={{border:2, p:2,borderRadius:2,borderColor: "primary.main", height: "auto", width: 'auto' }}>
